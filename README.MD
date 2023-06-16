@@ -27,4 +27,17 @@ Coming Soon
 
 ### Deployment
 
-Project is packaged with a dockerfile and docker-compose job that should expose a streamlit ui on localhost:8501. Please use the envtemplate file to create your .env for running the project
+Project is packaged with a dockerfile expose a gradio ui on localhost:7000. Please use the envtemplate file to create your .env for running the project
+
+To build & run
+
+```
+docker build . -t ai_agent:latest
+docker run -it -p 7000:7000 ai_agent:latest
+```
+
+To build, run, and, clean up image in one command :
+
+```
+docker build . -t ai_agent:latest && docker run --rm -it -p 7000:7000 --name ai_agent_container ai_agent:latest
+```

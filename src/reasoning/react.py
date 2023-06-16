@@ -3,12 +3,14 @@ from .reasoning_strategy import ReasoningStrategy, ReasoningConfig
 from langchain.docstore.wikipedia import Wikipedia
 from langchain.agents import initialize_agent, Tool, AgentExecutor
 from langchain.agents.react.base import DocstoreExplorer
-from typing import Callable
-
+from typing import Callable, Optional
+import pprint
 
 class ReactStrategy(ReasoningStrategy):
     def __init__(self, config: ReasoningConfig, display: Callable):
         super().__init__(config=config, display=display)
+        print("Creating reAct strategy with config: ",)
+        pprint.pprint(vars(config))
 
     def run(self, question) -> str:
         print('Using ReAct')
@@ -38,7 +40,7 @@ class ReactStrategy(ReasoningStrategy):
         self.display(response_react)
         return response_react
 
-def default_react_config() -> ReasoningConfig:
+def get_react_config(temperature: float = 0.7) -> ReasoningConfig:
     usage = """
     The solution for this problem requires searching for further information online, 
     generating reasoning traces and task-specific actions in an interleaved manner. 
@@ -47,4 +49,5 @@ def default_react_config() -> ReasoningConfig:
     maintain, and adjust high-level plans for acting, while also interacting with external 
     sources to incorporate additional information into reasoning 
     """
-    return ReasoningConfig(usage=usage)
+    return ReasoningConfig(usage=usage, temperature=temperature)
+    

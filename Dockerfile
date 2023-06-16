@@ -13,5 +13,6 @@ WORKDIR /app/src
 ENV PATH="/root/.local/bin:${PATH}"
 
 EXPOSE 8501
+EXPOSE 7000
 
-CMD ["streamlit", "run", "main.py", ]
+CMD python main.py

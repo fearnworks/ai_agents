@@ -31,6 +31,6 @@ class ReasoningStrategy:
     def run(self, question):
         raise NotImplementedError()
     
-def default_reasoning_config():
+def get_reasoning_config(temperature: float = 0.7) -> ReasoningConfig:
     usage = "This is the default reasoning model that should only be used as a last resort"
     return ReasoningConfig(usage=usage)

@@ -1,9 +1,10 @@
 from langchain import PromptTemplate, LLMChain
-from .react import ReactStrategy, default_react_config
-from .tree_of_thought import TreeOfThoughtStrategy, default_tot_config
-from .chain_of_thought import ChainOfThoughtStrategy, default_cot_confg
+from .react import ReactStrategy, get_react_config
+from .tree_of_thought import TreeOfThoughtStrategy, get_tot_config
+from .chain_of_thought import ChainOfThoughtStrategy, get_cot_confg
 from .reasoning_strategy import ReasoningConfig
 from typing import Tuple, Callable, Optional
+import pprint
 import re
 import os
 
@@ -18,15 +19,18 @@ class ReasoningRouter:
         Returns:
             None
         """
+        print("Creating Reasoning Router with config: ",)
+        pprint.pprint(vars(config))
         self.api_key = api_key
         self.llm  = config.llm_class(temperature=config.temperature, max_tokens=config.max_tokens)
         self.question: str = question
         self.display: Callable = display
 
+
         self.strategies = {
-            1: ReactStrategy(default_react_config(), display=self.display),
-            2: TreeOfThoughtStrategy(default_tot_config(),display=self.display),
-            3: ChainOfThoughtStrategy(default_cot_confg(),display=self.display)
+            1: ReactStrategy(get_react_config(temperature=config.temperature), display=self.display),
+            2: TreeOfThoughtStrategy(get_tot_config(temperature=config.temperature),display=self.display),
+            3: ChainOfThoughtStrategy(get_cot_confg(temperature=config.temperature),display=self.display)
         }
         self.usage_block = f"""
 
@@ -66,7 +70,8 @@ class ReasoningRouter:
         Determines the appropriate reasoning strategy based on the user's question and executes it.
 
         Returns:
-            None
+            response : Reason the strategy was selected
+            strat_response : Response from the strategy 
         """
         
         prompt = PromptTemplate(template=self.template, input_variables=["question"])
@@ -85,6 +90,6 @@ class ReasoningRouter:
             
         return response, strat_resp
 
-def default_reasoning_router_config() -> ReasoningConfig:
+def get_reasoning_router_config(temperature: float = 0.6) -> ReasoningConfig:
     usage="This router should be used when determing the most effective strategy for a query requiring more complex, but general reasoning to derive"
-    return ReasoningConfig(temperature=0.6, max_tokens=3000, usage=usage)
+    return ReasoningConfig(temperature=temperature, max_tokens=3000, usage=usage)

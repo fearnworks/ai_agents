@@ -1,5 +1,7 @@
 langchain
 streamlit
+gradio
 python-dotenv
 openai
 wikipedia
+ipykernel
