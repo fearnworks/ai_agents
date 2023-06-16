@@ -9,15 +9,13 @@ import os
 
 class ReasoningConfig(BaseModel):
     """
-    A class representing a reasoning strategy for answering questions.
-
-    Args:
-        config (ReasoningConfig): The configuration for the reasoning strategy.
-        display (Callable): A function for displaying output.
+    A configuration class for the reasoning strategy.
 
     Attributes:
-        llm (BaseLLM): The language model used for reasoning.
-        display (Callable): The function for displaying output.
+        temperature (float): The temperature parameter for the language model.
+        max_tokens (int): The maximum number of tokens to generate.
+        llm_class (Type[BaseLLM]): The language model class to use for reasoning.
+        usage (str): String describing when it is appropriate to use this reasoning strategy. 
     """
     temperature: float = 0.7
     max_tokens: int = 1500
@@ -25,6 +23,7 @@ class ReasoningConfig(BaseModel):
     usage: str
 
 class ReasoningStrategy:
+    """Base class for Reasoning Strategies"""
     def __init__(self, config: ReasoningConfig, display: Callable):
         self.llm = config.llm_class(temperature=config.temperature, max_tokens=config.max_tokens) # ign
         self.display = display

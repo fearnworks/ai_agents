@@ -3,7 +3,7 @@ from .react import ReactStrategy, default_react_config
 from .tree_of_thought import TreeOfThoughtStrategy, default_tot_config
 from .chain_of_thought import ChainOfThoughtStrategy, default_cot_confg
 from .reasoning_strategy import ReasoningConfig
-from typing import Tuple, Callable
+from typing import Tuple, Callable, Optional
 import re
 import os
 
@@ -36,17 +36,25 @@ class ReasoningRouter:
 
         """
         self.template = """
-    Consider the following problem or puzzle: {question}. Based on the characteristics of the problem,
-      identify the most suitable approach among the three techniques described below. consider each carefully 
-      in the context of the question, write out the likelihood of success of each, and then select the most 
-      appropriate approach:""" + self.usage_block + """
-        Based on the characteristics of the given problem or puzzle, select the technique that aligns most closely with the nature of the problem. It is important to first provide the number of the technique that best solves the problem, followed by a period. Then you may provide your reason why you have chosen this technique. 
+        Consider the following problem or puzzle: {question}. Based on the characteristics of the problem,
+        identify the most suitable approach among the three techniques described below. consider each carefully 
+        in the context of the question, write out the likelihood of success of each, and then select the most 
+        appropriate approach:""" + self.usage_block + """
+            Based on the characteristics of the given problem or puzzle, select the technique that aligns most closely with the nature of the problem. It is important to first provide the number of the technique that best solves the problem, followed by a period. Then you may provide your reason why you have chosen this technique. 
 
-    The number of the selected technique is...
-    """
-
+        The number of the selected technique is...
+        """
+        
     @staticmethod
-    def find_first_integer(text):
+    def find_first_integer(text: str) -> Optional[int]:
+        """Finds the first integer in a string.
+
+        Args:
+            text (str): The string to search for an integer.
+
+        Returns:
+            int or None: The first integer found in the string, or None if no integer is found.
+        """
         match = re.search(r'\d+', text)
         if match:
             return int(match.group())

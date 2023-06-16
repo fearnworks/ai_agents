@@ -1,5 +1,5 @@
-from .react import ReactStrategy
-from .tree_of_thought import TreeOfThoughtStrategy
-from .chain_of_thought import ChainOfThoughtStrategy
+from .react import ReactStrategy, default_react_config
+from .tree_of_thought import TreeOfThoughtStrategy, default_tot_config
+from .chain_of_thought import ChainOfThoughtStrategy, default_cot_confg
 from .reasoning_router import ReasoningRouter, default_reasoning_router_config
-from .reasoning_strategy import ReasoningStrategy, ReasoningConfig
+from .reasoning_strategy import ReasoningStrategy, ReasoningConfig, default_reasoning_config

@@ -4,7 +4,6 @@ import streamlit as st
 from reasoning import ReasoningRouter, default_reasoning_router_config
 load_dotenv(find_dotenv())
 
-openai_api_key = os.getenv("OPENAI_API_KEY")
 
 def run_app():
     """
