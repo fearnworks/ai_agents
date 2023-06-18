@@ -19,7 +19,7 @@ def create_interface():
             create_knowledge_router_ui()
         
     interface.queue()
-    interface.launch(server_name="0.0.0.0", server_port=7000, share=True)
+    interface.launch()
 
 if __name__ == "__main__":
     create_interface()

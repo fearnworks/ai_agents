@@ -7,7 +7,6 @@ colorFrom: green
 colorTo: red
 pinned: true
 app_file: server.py
-app_port: 7000
 ---
 
 
