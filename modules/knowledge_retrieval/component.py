@@ -1,10 +1,12 @@
 from modules.knowledge_retrieval.knowledge_router import KnowledgeDomainRouter, get_knowledge_domain_router_config
+from modules.settings.user_settings import UserSettings
 import gradio as gr
 import os 
-openai_api_key = os.getenv("OPENAI_API_KEY")
+
 
 def determine_and_execute(question: str, temperature: float, api_key = "" ):
-    os.environ["OPENAI_API_KEY"] = api_key
+    settings = UserSettings.get_instance()
+    api_key = settings.get_api_key()
     config = get_knowledge_domain_router_config(temperature=temperature)
     config.temperature = temperature
     determiner = KnowledgeDomainRouter(api_key=api_key, config=config, question=question, display=print)
@@ -15,7 +17,6 @@ examples = [["""When is my grandmothers birthday?""", 0.6], ["What was my tax bu
 
 def create_knowledge_router_ui(cache_examples=False):  
     with gr.Row():
-        api_key = gr.Textbox(label="You OpenAI API key", type="password")
         question = gr.Textbox(label="Enter your question here:")
         temperature = gr.Slider(minimum=0, maximum=2, default=.7, label="Temperature")
     with gr.Column():
@@ -23,6 +24,6 @@ def create_knowledge_router_ui(cache_examples=False):
         reasoning = gr.Textbox(label="Reasoning")
     
     generate_button = gr.Button(label="Generate")
-    generate_button.click(determine_and_execute, outputs=[reasoning_strategy, reasoning], inputs=[question, temperature, api_key])
-    gr.Examples(examples=examples, fn=determine_and_execute, cache_examples=cache_examples, inputs=[question, temperature, api_key], outputs=[reasoning_strategy, reasoning])
+    generate_button.click(determine_and_execute, outputs=[reasoning_strategy, reasoning], inputs=[question, temperature])
+    gr.Examples(examples=examples, fn=determine_and_execute, cache_examples=cache_examples, inputs=[question, temperature], outputs=[reasoning_strategy, reasoning])
 
