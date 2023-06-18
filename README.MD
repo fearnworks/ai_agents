@@ -47,3 +47,12 @@ To build, run, and, clean up image in one command :
 ```
 docker build . -t ai_agent:latest && docker run --rm -it -p 7000:7000 --name ai_agent_container ai_agent:latest
 ```
+title: Ai Agents
+emoji: 📊
+colorFrom: yellow
+colorTo: pink
+sdk: gradio
+sdk_version: 3.35.2
+app_file: app.py
+pinned: false
+license: apache-2.0
