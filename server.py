@@ -17,9 +17,9 @@ def create_interface():
             create_reasoning_router_ui()
         with gr.Tab("Knowledge Domains"):
             create_knowledge_router_ui()
+        
     interface.queue()
     interface.launch(server_name="0.0.0.0", server_port=7000)
-
 
 if __name__ == "__main__":
     create_interface()
