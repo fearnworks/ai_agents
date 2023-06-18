@@ -1,8 +1,6 @@
 from modules.reasoning.reasoning_router import ReasoningRouter, get_reasoning_router_config
 from modules.settings.user_settings import UserSettings
 import gradio as gr
-import os 
-openai_api_key = os.getenv("OPENAI_API_KEY")
 
 
 def determine_and_execute(question, temperature):

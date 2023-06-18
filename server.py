@@ -30,7 +30,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     port = args.port
-    settings = UserSettings().get_instance()
+    settings = UserSettings.get_instance()
     if openai_api_key:
         settings.set_api_key(openai_api_key)
     create_interface()

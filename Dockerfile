@@ -15,4 +15,4 @@ ENV PATH="/root/.local/bin:${PATH}"
 EXPOSE 8501
 EXPOSE 7000
 
-CMD python server.py 
+CMD python server.py --port 7000

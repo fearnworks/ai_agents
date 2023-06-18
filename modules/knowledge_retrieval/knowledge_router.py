@@ -9,11 +9,14 @@ from modules.knowledge_retrieval.destination_chain import DestinationChainStrate
 from langchain import PromptTemplate, LLMChain
 
 import pprint
+from modules.settings.user_settings import UserSettings
 from typing import Callable, Dict, Optional, Tuple
 import re
 
 class KnowledgeDomainRouter(RouterChain):
-    def __init__(self, api_key: str, config: LLMChainConfig, question: str, display: Callable):
+    def __init__(self, config: LLMChainConfig, question: str, display: Callable):
+        settings = UserSettings.get_instance()
+        
         chains : Dict[int, DestinationChainStrategy] = {
         1: BusinessChain(config=get_business_chain_config(), display=display),
         2: FamilyChain(config=get_family_chain_config(), display=display),
@@ -36,11 +39,12 @@ class KnowledgeDomainRouter(RouterChain):
 
             The number and name of the selected strategy is...
             """
-
-        super().__init__(template = template, api_key = api_key, destination_chains=chains, usage=config.usage, llm=config.llm_class, question=question)
+        api_key = settings.get_api_key()
+        super().__init__(api_key=api_key, template = template, destination_chains=chains, usage=config.usage, llm=config.llm_class, question=question)
+        self.api_key = settings.get_api_key()
         print("Creating Knowledge Domain Router with config: ")
         # pprint.pprint(config)
-        self.llm = config.llm_class(temperature=config.temperature, max_tokens=config.max_tokens, api_key=api_key)
+        self.llm = config.llm_class(temperature=config.temperature, max_tokens=config.max_tokens, api_key=self.api_key)
         self.question: str = question
 
     def run(self, question: str) -> str:

@@ -1,4 +1,5 @@
 from modules.base.chain import IChain
+from modules.settings.user_settings import UserSettings
 from typing import Dict , Any, Callable
 import os
 
@@ -22,7 +23,7 @@ class RouterChain(IChain):
     question: str
     usage: str
     llm: Any
-    api_key: str = os.environ.get('OPENAI_API_KEY')
+    api_key: str 
 
     def add_chain(self, domain: str, chain: IChain) -> None:
         self.destination_chains[domain] = chain

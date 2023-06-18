@@ -16,6 +16,7 @@ class UserSettings:
 
     def set_api_key(self, api_key):
         self.api_key = api_key
+        os.environ["OPENAI_API_KEY"] = api_key
 
     def get_api_key(self):
         return self.api_key

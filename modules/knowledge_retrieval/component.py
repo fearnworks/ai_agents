@@ -4,12 +4,12 @@ import gradio as gr
 import os 
 
 
-def determine_and_execute(question: str, temperature: float, api_key = "" ):
+def determine_and_execute(question: str, temperature: float):
     settings = UserSettings.get_instance()
-    api_key = settings.get_api_key()
+
     config = get_knowledge_domain_router_config(temperature=temperature)
     config.temperature = temperature
-    determiner = KnowledgeDomainRouter(api_key=api_key, config=config, question=question, display=print)
+    determiner = KnowledgeDomainRouter(config=config, question=question, display=print)
     determine_output, execute_output = determiner.determine_and_execute(question=question)
     return determine_output, execute_output
 
