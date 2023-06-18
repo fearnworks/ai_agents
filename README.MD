@@ -1,4 +1,4 @@
-```
+---
 title: Ai Agents
 emoji: 📊
 colorFrom: green
@@ -8,7 +8,7 @@ sdk_version: 3.35.2
 app_file: server.py
 pinned: false
 license: apache-2.0
-```
+---
 
 # AI Agents
 A collection of patterns for experimenting with agents, llm pipelines, and ChainOfThoughtStrategy. 
