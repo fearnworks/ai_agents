@@ -4,7 +4,8 @@ import os
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 
-def determine_and_execute(api_key,question, temperature):
+def determine_and_execute(question, temperature, api_key=""):
+    os.environ["OPENAI_API_KEY"] = api_key
     config = get_reasoning_router_config(temperature=temperature)
     config.temperature = temperature
     determiner = ReasoningRouter(api_key=api_key, config=config, question=question, display=print)
@@ -28,6 +29,6 @@ def create_reasoning_router_ui(cache_examples=False):
         reasoning = gr.Textbox(label="Reasoning")
     
     generate_button = gr.Button(label="Generate")
-    generate_button.click(determine_and_execute, outputs=[reasoning_strategy, reasoning], inputs=[api_key, question, temperature])
-    gr.Examples(examples=examples, fn=determine_and_execute, cache_examples=cache_examples, inputs=[question, temperature], outputs=[reasoning_strategy, reasoning])
+    generate_button.click(determine_and_execute, outputs=[reasoning_strategy, reasoning], inputs=[question, temperature, api_key])
+    gr.Examples(examples=examples, fn=determine_and_execute, cache_examples=cache_examples, inputs=[question, temperature, api_key], outputs=[reasoning_strategy, reasoning])
 
