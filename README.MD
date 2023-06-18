@@ -13,6 +13,12 @@ Strategies for jupyter, gradio, and react will be prioritized in general at this
 General problem solving requiring reasoned processing. Utilizing tree of thoughts, chain of thought, and reAct. Current prompts heavily inspired by
 work from https://github.com/mrspiggot
 
+### Knowledge Domains
+
+Example of knowledge domain retrieval. Given a question the router determines the best knowledge domain chain to use and then calls that chain to handle the response.
+
+Includes examples of queries that will return each of the four implemented domains. 
+
 ### Generative Image Prompting Patterns
 
 Coming soon 
