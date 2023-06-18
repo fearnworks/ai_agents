@@ -6,7 +6,7 @@ colorTo: red
 sdk: gradio
 sdk_version: 3.35.2
 app_file: server.py
-pinned: raw
+pinned: false
 license: apache-2.0
 ---
 
