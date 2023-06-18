@@ -1,3 +1,15 @@
+```
+title: Ai Agents
+emoji: 📊
+colorFrom: green
+colorTo: red
+sdk: gradio
+sdk_version: 3.35.2
+app_file: server.py
+pinned: false
+license: apache-2.0
+```
+
 # AI Agents
 A collection of patterns for experimenting with agents, llm pipelines, and ChainOfThoughtStrategy. 
 Heavily inspired by examples and code across the AI Open Source community but with some fearnworks patterns heavily interspersed. 
@@ -47,12 +59,3 @@ To build, run, and, clean up image in one command :
 ```
 docker build . -t ai_agent:latest && docker run --rm -it -p 7000:7000 --name ai_agent_container ai_agent:latest
 ```
-title: Ai Agents
-emoji: 📊
-colorFrom: yellow
-colorTo: pink
-sdk: gradio
-sdk_version: 3.35.2
-app_file: app.py
-pinned: false
-license: apache-2.0
