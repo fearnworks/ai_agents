@@ -1,5 +1,5 @@
 from langchain import PromptTemplate, LLMChain
-from .react import ReactStrategy, get_react_config
+from .re_act import ReActStrategy, get_re_act_config
 from .tree_of_thought import TreeOfThoughtStrategy, get_tot_config
 from .chain_of_thought import ChainOfThoughtStrategy, get_cot_confg
 from .reasoning_strategy import ReasoningConfig
@@ -28,7 +28,7 @@ class ReasoningRouter:
 
 
         self.strategies = {
-            1: ReactStrategy(get_react_config(temperature=config.temperature), display=self.display),
+            1: ReActStrategy(get_re_act_config(temperature=config.temperature), display=self.display),
             2: TreeOfThoughtStrategy(get_tot_config(temperature=config.temperature),display=self.display),
             3: ChainOfThoughtStrategy(get_cot_confg(temperature=config.temperature),display=self.display)
         }

@@ -8,11 +8,11 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-WORKDIR /app/src
+WORKDIR /app/
 
 ENV PATH="/root/.local/bin:${PATH}"
 
 EXPOSE 8501
 EXPOSE 7000
 
-CMD python main.py
+CMD python server.py

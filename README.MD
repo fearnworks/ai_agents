@@ -4,7 +4,7 @@ Heavily inspired by examples and code across the AI Open Source community but wi
 
 ## UI
 Front end for templates currently uses streamlit, however display for each agent example will be heavily decoupled from deployment avenue. 
-Strategies for jupyter, streamlit, and react will be prioritized in general at this time. 
+Strategies for jupyter, gradio, and react will be prioritized in general at this time. 
 
 ## Modules
 

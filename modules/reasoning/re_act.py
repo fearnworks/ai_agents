@@ -6,7 +6,7 @@ from langchain.agents.react.base import DocstoreExplorer
 from typing import Callable, Optional
 import pprint
 
-class ReactStrategy(ReasoningStrategy):
+class ReActStrategy(ReasoningStrategy):
     def __init__(self, config: ReasoningConfig, display: Callable):
         super().__init__(config=config, display=display)
         print("Creating reAct strategy with config: ",)
@@ -29,18 +29,18 @@ class ReactStrategy(ReasoningStrategy):
                 description="Lookup a term in the docstore.",
             )
         ]
-        react = initialize_agent(tools, self.llm, agent="react-docstore", verbose=True)
+        re_act = initialize_agent(tools, self.llm, agent="react-docstore", verbose=True)
         agent_executor = AgentExecutor.from_agent_and_tools(
-            agent=react.agent,
+            agent=re_act.agent,
             tools=tools,
             verbose=True,
         )
-        response_react = agent_executor.run(question)
-        print(response_react)
-        self.display(response_react)
-        return response_react
+        response_re_act = agent_executor.run(question)
+        print(response_re_act)
+        self.display(response_re_act)
+        return response_re_act
 
-def get_react_config(temperature: float = 0.7) -> ReasoningConfig:
+def get_re_act_config(temperature: float = 0.7) -> ReasoningConfig:
     usage = """
     The solution for this problem requires searching for further information online, 
     generating reasoning traces and task-specific actions in an interleaved manner. 
