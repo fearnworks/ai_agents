@@ -13,8 +13,8 @@ def determine_and_execute(api_key, question: str, temperature: float):
 examples = [["""When is my grandmothers birthday?""", 0.6], ["What was my tax burden last year?", 0.6 ], ["What is the most recent magic the gathering card set released?", 0.6], ["What products are the most popular with my small business customers?", 0.6]]
 
 def create_knowledge_router_ui(cache_examples=False):  
-    api_key = gr.Textbox(label="You OpenAI API key", type="password")
     with gr.Row():
+        api_key = gr.Textbox(label="You OpenAI API key", type="password")
         question = gr.Textbox(label="Enter your question here:")
         temperature = gr.Slider(minimum=0, maximum=2, default=.7, label="Temperature")
     with gr.Column():

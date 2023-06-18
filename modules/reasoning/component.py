@@ -19,8 +19,8 @@ He puts the cup down in the garden, then walks to the garage.
 Where is the ball?""", 0.6], ["Given the task of building a house in the middle of a river, what are three strategies I could use to mitigate risk of flooding?", 0.6 ]]
 
 def create_reasoning_router_ui(cache_examples=False): 
-    api_key = gr.Textbox(label="You OpenAI API key", type="password")
     with gr.Row():
+        api_key = gr.Textbox(label="You OpenAI API key", type="password")
         question = gr.Textbox(label="Enter your question here:")
         temperature = gr.Slider(minimum=0, maximum=2, default=.7, label="Temperature")
     with gr.Column():
@@ -29,5 +29,5 @@ def create_reasoning_router_ui(cache_examples=False):
     
     generate_button = gr.Button(label="Generate")
     generate_button.click(determine_and_execute, outputs=[reasoning_strategy, reasoning], inputs=[api_key, question, temperature])
-    gr.Examples(examples=examples, fn=determine_and_execute, cache_examples=cache_examples, inputs=[api_key, question, temperature], outputs=[reasoning_strategy, reasoning])
+    gr.Examples(examples=examples, fn=determine_and_execute, cache_examples=cache_examples, inputs=[question, temperature], outputs=[reasoning_strategy, reasoning])
 
