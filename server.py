@@ -12,14 +12,14 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 def create_interface():
     title: str = "Prompt Strategy Demo"
     description: str = "AI Agents Sandbox"
-    with gr.Blocks(analytics_enabled=False, capture_session=True, title=title, description=description) as interface:
+    with gr.Blocks(analytics_enabled=False, capture_session=True, title=title) as interface:
         with gr.Tab("Reasoning Router"):
             create_reasoning_router_ui()
         with gr.Tab("Knowledge Domains"):
             create_knowledge_router_ui()
         
     interface.queue()
-    interface.launch(server_name="0.0.0.0", server_port=7000)
+    interface.launch(server_name="0.0.0.0", server_port=7000, share=True)
 
 if __name__ == "__main__":
     create_interface()
