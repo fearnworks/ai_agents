@@ -36,8 +36,7 @@ class DestinationChainStrategy(DestinationChain):
     def __init__(self, config: LLMChainConfig, display: Callable, knowledge_domain: KnowledgeDomain, usage: str):
         settings = UserSettings.get_instance()
         api_key = settings.get_api_key()
-        print("Api key")
-        print(api_key)
+
         super().__init__(api_key=api_key, knowledge_domain=knowledge_domain, llm=config.llm_class, display=display, usage=usage)
         
         self.llm = config.llm_class(temperature=config.temperature, max_tokens=config.max_tokens)
