@@ -1,8 +1,24 @@
-langchain
-streamlit
-gradio
-python-dotenv
-openai
-wikipedia
-ipykernel
+###### General
+pandas
+torch
+###### Util
 loguru
+python-dotenv
+ipykernel
+###### Langchain
+langchain
+unstructured
+pypdf
+wikipedia
+###### Open AI Libs
+tiktoken
+openai
+###### Vectorstores
+pinecone-client[grpc] # if using pine vectorstore
+chromadb
+##### UIs
+# streamlit
+gradio
+###### Embedding
+sentence-transformers
+InstructorEmbedding

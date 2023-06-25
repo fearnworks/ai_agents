@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=61.0","setuptools-scm","pytest", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "AIAgents"
+version = "0.1"
+description = "Fearnworks AI Agents"
+
+[options]
+py_modules = ["modules"]
+
