@@ -1,9 +1,8 @@
 import os
-from langchain.vectorstores import Chroma, Pinecone
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.vectorstores import Pinecone
+from modules.vector_stores.embedding.openai import get_default_openai_embeddings
 import pinecone 
 
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
 PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY')
 PINECONE_API_ENV = os.environ.get('PINECONE_API_ENV') # You may need to switch with your env
@@ -51,7 +50,7 @@ def get_default_pinecone_session(index: str) -> PineconeSessionManager:
     Returns:
         PineconeSessionManager: A new PineconeSessionManager instance.
     """
-    embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+    embeddings = get_default_openai_embeddings()
     index_name = index # put in the name of your pinecone index here
     pc_session = PineconeSessionManager(embeddings, index_name)
     return pc_session

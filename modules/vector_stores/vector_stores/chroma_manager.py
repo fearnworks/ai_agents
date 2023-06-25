@@ -1,8 +1,6 @@
 from langchain.vectorstores import Chroma
 from langchain.vectorstores.base import VectorStoreRetriever
 from modules.vector_stores.loaders.pypdf_load_strategy import (
-    PyPDFLoadStrategy,
-    PyPDFConfig,
     get_default_pypdf_loader,
 )
 from modules.vector_stores.embedding.instructorxl import get_default_instructor_embedding
