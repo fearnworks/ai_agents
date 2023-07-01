@@ -22,3 +22,4 @@ gradio
 ###### Embedding
 sentence-transformers
 InstructorEmbedding
+git+https://github.com/fearnworks/fearnworks-util.git
