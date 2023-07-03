@@ -1,0 +1,24 @@
+services:
+  app:
+    build: .
+    container_name: fw_ai_agents
+    command: python server.py --port 7000
+    
+    ports:
+      - 8501:8501
+      - 7000:7000
+    volumes:
+      - .:/code
+    env_file:
+      - .env
+    networks:
+      - hq-network
+
+  redis:
+    image: redis:alpine
+    networks:
+      - hq-network
+      
+networks:
+  hq-network:
+    external: true
